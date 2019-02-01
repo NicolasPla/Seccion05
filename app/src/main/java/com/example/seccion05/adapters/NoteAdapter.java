@@ -13,27 +13,28 @@ import com.example.seccion05.models.Note;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
-public class BoardAdapter extends BaseAdapter {
+public class NoteAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Board> list;
+    private List<Note> list;
     private int layout;
 
-    public BoardAdapter(Context context, List<Board> boards, int layout){
+    public  NoteAdapter(Context context, List<Note> notes, int layout){
         this.context = context;
-        this.list = boards;
         this.layout = layout;
-    }
+        this.list = notes;
 
+    }
     @Override
     public int getCount() {
         return list.size();
     }
 
     @Override
-    public Board getItem(int position) {
+    public Object getItem(int position) {
         return list.get(position);
     }
 
@@ -47,38 +48,32 @@ public class BoardAdapter extends BaseAdapter {
 
         ViewHolder vh;
 
-        if (convertView == null){
-            convertView = LayoutInflater.from(context).inflate(layout, null);
+        if (convertView == null)
+        {
+            convertView = LayoutInflater.from(context).inflate(layout,null);
             vh = new ViewHolder();
-            vh.title = (TextView)  convertView.findViewById(R.id.textViewBoardTitle);
-            vh.notes = (TextView)  convertView.findViewById(R.id.textViewBoardNotes);
-            vh.createdAt = (TextView)  convertView.findViewById(R.id.textViewBoardDate);
+            vh.description = convertView.findViewById(R.id.textViewNoteDescription);
+            vh.createdAt = convertView.findViewById(R.id.textViewCreatedAt);
             convertView.setTag(vh);
         }else {
-
             vh = (ViewHolder) convertView.getTag();
-
         }
 
-        Board board = list.get(position);
-        vh.title.setText(board.getTitle());
+        Note note = list.get(position);
 
-        int numberOfNotes = board.getNotes().size();
-        String textForNotes = (numberOfNotes == 1) ? numberOfNotes + "Note: " : numberOfNotes + "Notes";
-        vh.notes.setText(textForNotes);
+        vh.description.setText(note.getDescription());
 
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        String createdAt = df.format(board.getCreatedAt());
+        String createdAt = df.format(note.getCreatedAt());
+
         vh.createdAt.setText(createdAt);
 
         return convertView;
     }
 
-    public class ViewHolder{
-        TextView title;
-        TextView notes;
+    public class  ViewHolder{
+
+        TextView description;
         TextView createdAt;
-
-
     }
 }

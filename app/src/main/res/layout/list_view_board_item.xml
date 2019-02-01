@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="74dp" android:background="F00" android:paddingRight="15dp">
+    android:layout_height="74dp" android:paddingRight="15dp">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="60dp"
         android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:paddingTop="7dp"
         >
 
         <TextView
             android:id="@+id/textViewBoardTitle"
             android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
             android:layout_weight="0.8"
             android:textSize="18dp"
             />
 
         <TextView
-            android:id="@+id/textViewBoardNote"
+            android:id="@+id/textViewBoardNotes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
